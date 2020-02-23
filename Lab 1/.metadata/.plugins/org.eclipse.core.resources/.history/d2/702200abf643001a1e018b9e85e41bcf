@@ -1,0 +1,95 @@
+// ------------------------------------------------------------
+//                Name.java
+// ------------------------------------------------------------
+
+public class Name
+{
+	private String first;  // first name
+	private String last;   // last name
+
+	public Name()
+	{
+		this ( "", "" );
+	}
+
+	public Name(String firstName, String lastName)
+	{
+		first = firstName;
+		last  = lastName;
+	}
+
+	public void setName(String firstName, String lastName)
+	{
+		first = firstName;
+		last  = lastName;
+	}
+
+	public Name (Name obj) throws NullPointerException 
+	{
+		this.first = new String ( obj.first );
+		this.last = new String ( obj.last );
+	}  // Copy Constructor
+
+	public void   setFirst(String firstName) { first = firstName;  }
+	public void   setLast (String lastName ) { last = lastName;    }
+	public String getFirst()                 { return first;	   }
+	public String getLast ()	             { return last;   	   }
+	public String getName ()                 { return toString();  }
+	public void   giveLastNameTo ( Name aName )
+	{
+		aName.setLast ( last );
+	}
+
+	public boolean equals ( Object obj )				  // Equals method
+	{
+		if ( this == obj ) return true;
+
+		if ( ( obj != null ) && ( getClass( ) == obj.getClass( ) ) )
+		{
+			Name x = ( Name ) obj;
+
+			if ( ( first.equals ( x.first ) ) &&
+			     ( last.equals ( x.last ) ))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}			 		   
+
+	public String toString( )
+	{
+		return first + " " + last;
+	}
+
+	public void finalize ( ) 							   // finalize method
+	{
+		System.out.println("Name - finalize method");
+	}						   
+
+	public void dispose ( ) 							   // dispose method
+	{ 
+		System.out.println("Name - dispose method");
+	}						  
+
+	public int hashCode ( )  							   // hashCode method
+	{
+		int number = 32;
+		number = 35 * number + first.hashCode(); 
+		number = 35 * number + last.hashCode();
+		return number;
+		
+	}						   
+	//public int compareTo ( ) 							   // compareTo Method
+	//{
+		
+	//}						   
+
+} // end Name

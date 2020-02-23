@@ -1,0 +1,93 @@
+// ----------------------------------------------------------
+//                    Student.java
+// ----------------------------------------------------------
+
+public class Student extends Name
+{
+	private Name fullName;
+	private String id;
+
+	public Student()
+	{
+		this ( new Name ( ), "" );
+	}
+
+	public Student(Name studentName, String studentId)
+	{
+		fullName = studentName;
+		id = studentId;
+	}
+
+	public Student(Student obj) throws NullPointerException	
+	{
+		this.fullName = new Name ( obj.fullName);
+		this.id  = new String ( obj.id.toString() );
+	}
+
+	public Object clone() 
+	{
+		return new Student (this);
+	}
+
+	public void setStudent(Name studentName, String studentId)
+	{
+		fullName = studentName;
+		id       = studentId;
+	}
+
+	public void   setName(Name studentName) {	fullName = studentName;	}
+	public Name   getName()                 {   return fullName;        }
+	public void   setId(String studentId)   {	id = studentId;         }
+	public String getId()                   {	return id;              }
+
+
+	public String toString()
+	{
+		return id + " " + fullName.toString ( );
+	}
+
+	public boolean equals ( Object obj ) 
+	{
+		if ( this == obj ) return true;
+
+		if ( ( obj != null ) && ( getClass( ) == obj.getClass( ) ) )
+		{
+			Student s = ( Student ) obj;
+
+			if ( ( fullName.equals ( s.fullName )) &&
+			     ( id.toString().equals ( s.id.toString() )))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public void finalize() 
+	{ 
+		System.out.println( "Student - finalize method");
+	}
+
+	public void dispose() 
+	{
+		
+	}
+
+	public int hashCode() 
+	{
+		int number = 29;
+		number = 33 * number + fullName.hashCode();
+		number = 33 * number + id.toString().hashCode();
+		return number;
+	}
+
+	//public int compareTo ( ) { }
+
+}  // end Student
